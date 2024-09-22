@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include "stdlib.h"
+
+typedef struct
+{
+    char book_name[50];
+    char book_author[50];
+    float price;
+}Books;
+
+float percentage[5]={};
+float Final_book_price_after_discount[5]={};
+
+void Enter_Book_details_And_discount(Books B[5],float *percentage);
+void Display_Book_Details_with_discount(Books B[5],float *percentage);
+
+int main()
+{
+    Books B[5];
+    
+    Enter_Book_details_And_discount(B,percentage);
+    
+    Display_Book_Details_with_discount(B,percentage);
+    
+    return 0;
+    
+}
+
+void Enter_Book_details_And_discount(Books B[5],float *percentage)
+{
+    for(char i=0;i<5;i++)
+    {
+        printf("Enter Book Name\n");
+        scanf("%s",B[i].book_name);
+        printf("Enter Book Author Name\n");
+        scanf("%s",B[i].book_author);
+        printf("Enter Book price\n");
+        scanf("%f",&B[i].price);
+        printf("Enter Discount you want to offer in percentage\n");
+        scanf("%f",&percentage[i]);
+    }
+}
+void Display_Book_Details_with_discount(Books B[5],float *percentage)
+{
+    float Final_book_price_after_discount=0.0;
+    
+    for(char j=0;j<5;j++)
+    {
+        printf("Book_Name=%s\n",B[j].book_name);
+        printf("Book Author=%s\n",B[j].book_author);
+        printf("Book_Price=%f\n",B[j].price);
+        printf("Discount_offered=%f\n",percentage[j]);
+        Final_book_price_after_discount=(B[j].price-((B[j].price/100)*(percentage[j])));
+        printf("After_Discount_Price=%f\n",Final_book_price_after_discount);
+    }
+}
