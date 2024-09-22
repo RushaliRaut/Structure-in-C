@@ -1,0 +1,31 @@
+#include "stdio.h"
+
+typedef struct
+{
+    enum
+    {
+        Data,ACK,NACK
+    }format;
+    
+}Network_Packet;
+
+int main()
+{
+    Network_Packet Std;
+    
+    scanf("%d",(int *)&Std.format);
+    
+    switch(Std.format)
+    {
+        case Data:
+        printf("Received format is data\n");
+        break;
+        case ACK:
+        printf("Received format is ACK\n");
+        break;
+        case NACK:
+        printf("Received format is NACK\n");
+        break;
+    }
+    
+}
