@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include "stdlib.h"
+
+
+typedef struct
+{
+    char name[50];
+    int roll_number;
+    float marks[5];
+}Student;
+
+void Get_Student_Details(Student student[5]);
+void Print_student_Details(Student student[5]);
+
+int main()
+{
+    Student student[5];
+    
+    Get_Student_Details(student);
+    
+    Print_student_Details(student);
+    
+    return 0;
+}
+
+void Get_Student_Details(Student student[5])
+{
+    for(char i=0;i<5;i++)
+    {
+        printf("Enter Student Details\n");
+        scanf("%s",student[i].name);
+        printf("Enter student roll number\n");
+        scanf("%d",&student[i].roll_number);
+        for(char j=0;j<5;j++)
+        {
+            printf("Enter marks of student of 5 subjects");
+            scanf("%f",&student[i].marks[j]);
+        }
+    }
+}
+void Print_student_Details(Student student[5])
+{
+    for(char i=0;i<5;i++)
+    {
+        float Average=0.0;
+        printf("Name=%s\n",student[i].name);
+        printf("Roll_Number=%d\n",student[i].roll_number);
+        
+        for(char j=0;j<5;j++)
+        {
+            Average+=student[i].marks[j];
+            Average=Average/5.0;
+        }
+        printf("Average=%f\n",Average);
+    }
+}
