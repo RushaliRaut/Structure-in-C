@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdint.h>
+#include <string.h>
+
+typedef struct
+{
+    char Name[50];
+}Book_Name;
+
+int main()
+{
+    Book_Name BOOK_NAME[10];
+    unsigned char Store_Book_Name[20];
+   strcpy(BOOK_NAME[0].Name,"Thrones");
+   strcpy(BOOK_NAME[1].Name,"Bob The Builder");
+   strcpy(BOOK_NAME[2].Name,"Shinchan");
+    
+    printf("Enter a book name\n");
+    fgets((char *)Store_Book_Name,sizeof(Store_Book_Name),stdin);
+    Store_Book_Name[strcspn((char *)Store_Book_Name,"\n")]=0;
+    
+    for(char i=0;i<=10;i++)
+    {
+       if(strstr(BOOK_NAME[i].Name,(char *)Store_Book_Name)!=0)
+       {
+           printf("Congrats Book Found!!");
+           break;
+       }
+    }
+}
