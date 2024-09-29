@@ -1,0 +1,102 @@
+/***************************************************************************************************************************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+****************************************************************************************************************************************************************************************/
+/* Given an array nums with n objects colored red, white, or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white, and blue.
+We will use the integers 0, 1, and 2 to represent the color red, white, and blue, respectively. You must solve this problem without using the library's sort function.
+
+Example 1:
+Input: nums = [2,0,2,1,1,0]
+Output: [0,0,1,1,2,2]
+
+Example 2:
+Input: nums = [2,0,1]
+Output: [0,1,2]
+
+***********************************************************************************************************************************************************************************/
+#include <stdio.h>
+#include <stdint.h>
+
+typedef enum
+{
+    red,
+    blue,
+    white
+}Colors;
+
+typedef struct
+{
+    int length;
+    Colors color[5];
+}color_info;
+
+void sort_colors(color_info input,unsigned char len);
+
+int main()
+{
+    color_info input;
+    unsigned char user_input[50];
+    unsigned char array[input.length];
+    Colors color;
+    unsigned char num;
+    printf("Enter Length of array\n");
+    scanf("%d",&input.length);
+    printf("Enter a value for 0 red 1 for blue 2 for white\n");
+    
+    for(num=0;num<(input.length);num++)
+    {
+        scanf ("%d",(int *)(&input.color[num]));
+        if(input.color[num]<0 || input.color[num]>2)
+        {
+             num--;
+        }
+    }
+    sort_colors(input,input.length);
+}
+
+
+
+void sort_colors(color_info input,unsigned char len)
+{
+    uint8_t temp;                    
+    unsigned char i=0,j=0;
+    for(unsigned char i=0;i<len;i++)      
+    { 
+        for(unsigned char j=i+1;j<len;j++)
+        {
+            if(input.color[i]>input.color[j])    //i=0   j=3
+            {
+                temp=input.color[i];      //array[0]=1 temp=1
+                input.color[i]=input.color[j];  //array[3]=0 array[0]=0
+                input.color[j]=temp;      //temp=1   array[3]=1
+            }
+        }
+    }
+    for(i=0;i<len;i++)
+    {
+      printf("%d\n",input.color[i]);
+    }
+}
+
+
+/****************************************************************************************************************************************************************************************/
+/*
+Expected output:-
+Enter Length of array
+5
+Enter a value for 0 red 1 for blue 2 for white
+1
+0
+1
+2
+1
+Sorted array as follows
+0
+1
+1
+1
+2
+****************************************************************************************************************************************************************************************/
